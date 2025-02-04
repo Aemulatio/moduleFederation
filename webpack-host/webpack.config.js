@@ -14,7 +14,7 @@ module.exports = {
         new ModuleFederationPlugin({
             name: "host",
             remotes: {
-                app2: "app2@[rsPack]/RsApp.js",
+                app2: "app2@http://localhost:3000/RsApp.js",
             },
             shared: {react: {singleton: true}, "react-dom": {singleton: true}},
         })
