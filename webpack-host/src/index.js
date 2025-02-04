@@ -1,8 +1,4 @@
-import React from "react";
-import App from "./App";
-import "./App.scss";
-import {createRoot} from "react-dom/client";
+window.rsPack = "http://localhost:3000"
 
-const el = document.getElementById("app");
 
-createRoot(el).render(<App/>);
+import("./bootstrap");

@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {ModuleFederationPlugin} = require("webpack").container;
 
 module.exports = {
     output: {
@@ -10,6 +11,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "src/index.html", // to import index.html file inside index.js
         }),
+        new ModuleFederationPlugin({
+            name: "host",
+            remotes: {
+                app2: "app2@[rsPack]/RsApp.js",
+            },
+            shared: {react: {singleton: true}, "react-dom": {singleton: true}},
+        })
     ],
     devServer: {
         port: 3030, // you can change the port

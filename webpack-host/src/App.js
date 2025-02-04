@@ -1,9 +1,12 @@
 import React from "react";
+const RemoteApp = React.lazy(() => import("app2/RsApp"));
 
 const App = () => {
     return <div className={'container'}>
         <h1>Host App</h1>
-        <div>FOR SUB</div>
+        <React.Suspense fallback={"loading..."}>
+            <RemoteApp/>
+        </React.Suspense>
 
     </div>;
 };
