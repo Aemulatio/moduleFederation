@@ -3,6 +3,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {ModuleFederationPlugin} = require("webpack").container;
 
 module.exports = {
+    entry: './src/bootstrap',
+    devServer: {
+        port: 3030, // you can change the port
+    },
     output: {
         path: path.join(__dirname, "/dist"), // the bundle output path
         filename: "bundle.js", // the name of the bundle
@@ -10,19 +14,18 @@ module.exports = {
     plugins: [
         new ModuleFederationPlugin({
             name: "host",
-            // remoteType: 'var',
             remotes: {
                 app2: "app2@http://localhost:3000/RsApp.js",
             },
-            shared: {react: {singleton: true}, "react-dom": {singleton: true}},
+            shared: {
+                react: {singleton: true, requiredVersion: '^19.0.0'},
+                "react-dom": {singleton: true, requiredVersion: '^19.0.0'}
+            },
         }),
         new HtmlWebpackPlugin({
             template: "src/index.html", // to import index.html file inside index.js
         }),
     ],
-    devServer: {
-        port: 3030, // you can change the port
-    },
     module: {
         rules: [
             {

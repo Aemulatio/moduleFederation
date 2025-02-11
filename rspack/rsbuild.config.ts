@@ -1,7 +1,7 @@
 import {defineConfig} from '@rsbuild/core';
 import {pluginReact} from '@rsbuild/plugin-react';
 import {rspack} from '@rspack/core';
-import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
+import {pluginModuleFederation} from '@module-federation/rsbuild-plugin';
 
 // const {
 //   ModuleFederationPlugin,
@@ -11,10 +11,14 @@ export default defineConfig({
   // tools: {
   //   rspack: {
   //     plugins: [new rspack.container.ModuleFederationPluginV1({
-  //       name: 'app2',
-  //       filename: 'rsApp.js',
+  //       name: 'app2', // Имя удаленного приложения
+  //       filename: 'RsApp.js',
   //       exposes: {
-  //         './RsApp': './src/App.tsx',
+  //         './RsApp': './src/App.tsx', // Экспортируемый компонент
+  //       },
+  //       shared: {
+  //         react: {singleton: true, eager: true},
+  //         'react-dom': {singleton: true, eager: true},
   //       },
   //       // remoteType: 'module',
   //       // shared: {react: {singleton: true}, "react-dom": {singleton: true}},
@@ -32,12 +36,17 @@ export default defineConfig({
       name: 'app2', // Имя удаленного приложения
       filename: 'RsApp.js',
       exposes: {
-        './RsApp': './src/RsApp.js', // Экспортируемый компонент
+        './RsApp': './src/App.tsx', // Экспортируемый компонент
       },
       shared: {
-        react: { singleton: true, eager: true },
-        'react-dom': { singleton: true, eager: true },
+        react: {singleton: true, eager: true},
+        'react-dom': {singleton: true, eager: true},
       },
     }),
   ],
+  // source: {
+  //   entry: {
+  //     index: './src/bootstrap.jsx',
+  //   },
+  // },
 });
