@@ -8,16 +8,17 @@ module.exports = {
         filename: "bundle.js", // the name of the bundle
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "src/index.html", // to import index.html file inside index.js
-        }),
         new ModuleFederationPlugin({
             name: "host",
+            // remoteType: 'var',
             remotes: {
                 app2: "app2@http://localhost:3000/RsApp.js",
             },
             shared: {react: {singleton: true}, "react-dom": {singleton: true}},
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template: "src/index.html", // to import index.html file inside index.js
+        }),
     ],
     devServer: {
         port: 3030, // you can change the port

@@ -1,4 +1,3 @@
-window.rsPack = "http://localhost:3000"
-
-
 import("./bootstrap");
+
+console.log("sss")
